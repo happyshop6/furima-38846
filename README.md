@@ -9,8 +9,6 @@
 | family_name         | string | null: false             |
 | read_first          | string | null: false             |
 | read_family         | string | null: false             |
-| read_family         | string | null: false             |
-| read_family         | string | null: false             |
 | birth               | date   | null: false             |
 
 
@@ -22,17 +20,17 @@
 
 ##  productsテーブル
 
-| Column               | Type       | Options     |
-| -------------------  | ------     | ----------- |
-| name                 | string     | null: false |
-| explanation          | text       | null: false |
-| category_id          | integer    | null: false |
-| condition_id         | integer    | null: false |
-| postage_type_id      | integer    | null: false |
-| prefectures_id       | integer    | null: false |
-| preparation_day_id   | integer    | null: false |
-| price                | integer    | null: false |
-| user                 | references | null: false | 
+| Column               | Type       | Options                        |
+| -------------------  | ------     | ------------------------------ |
+| name                 | string     | null: false                    |
+| explanation          | text       | null: false                    |
+| category_id          | integer    | null: false                    |
+| condition_id         | integer    | null: false                    |
+| postage_type_id      | integer    | null: false                    |
+| prefecture_id        | integer    | null: false                    |
+| preparation_day_id   | integer    | null: false                    |
+| price                | integer    | null: false                    |
+| user                 | references | null: false, foreign_key: true | 
 
 ### Association
 
@@ -44,18 +42,22 @@
 | ------------- | ---------- | ------------------------------ |
 | product       | references | null: false, foreign_key: true |
 | user          | references | null: false, foreign_key: true |
-| purchase_info | references | null: false, foreign_key: true |
+
 
 ### Association
 
 - belongs_to :user
 - belongs_to :product
-- belongs_to :purchase_info
+- has_one :purchase_info
 
 ## purchases_info テーブル
 
 | Column        | Type        | Options                        |
 | ------------- | ----------  | ------------------------------ |
+| card_date     | string      | null: false                    |
+| card_deadline | string      | null: false                    |
+| security_code | string      | null: false                    |
+| phone_number  | string      | null: false                    |
 | postal_code   | string      | null: false                    |
 | city          | string      | null: false                    |
 | address       | string      | null: false                    |
@@ -66,4 +68,4 @@
 
 ### Association
 
-- has_many :item_purchase
+- belongs_to  :item_purchase

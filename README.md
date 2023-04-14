@@ -48,20 +48,17 @@
 
 - belongs_to :user
 - belongs_to :product
-- has_one :purchase_info
+- has_one :purchases_info
 
 ## purchases_info テーブル
 
 | Column        | Type        | Options                        |
 | ------------- | ----------  | ------------------------------ |
-| card_date     | string      | null: false                    |
-| card_deadline | string      | null: false                    |
-| security_code | string      | null: false                    |
 | phone_number  | string      | null: false                    |
 | postal_code   | string      | null: false                    |
 | city          | string      | null: false                    |
 | address       | string      | null: false                    |
-| building_name | string      | null: false                    |
+| building_name | string      |                                |
 | phone_number  | string      | null: false                    |
 | item_purchase | references  | null: false, foreign_key: true |
 

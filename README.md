@@ -50,7 +50,7 @@
 - belongs_to :product
 - has_one :purchases_info
 
-## purchases_info テーブル
+## purchases_infos テーブル
 
 | Column        | Type        | Options                        |
 | ------------- | ----------  | ------------------------------ |
@@ -58,6 +58,7 @@
 | postal_code   | string      | null: false                    |
 | city          | string      | null: false                    |
 | address       | string      | null: false                    |
+| prefecture_id | integer     | null: false                    |
 | building_name | string      |                                |
 | item_purchase | references  | null: false, foreign_key: true |
 

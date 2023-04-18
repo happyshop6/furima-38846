@@ -8,7 +8,7 @@
 | first_name          | string | null: false             |
 | family_name         | string | null: false             |
 | read_first          | string | null: false             |
-| read_family         | string | null: false             |
+| read_family        | string | null: false              |
 | birth               | date   | null: false             |
 
 

@@ -86,12 +86,12 @@ RSpec.describe User, type: :model do
       it '名字のフリガナが全角（カタカナ）でないと登録できない' do
         @user.read_family = 'やまだ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Lead family is invalid')
+        expect(@user.errors.full_messages).to include('Read family is invalid')
       end
       it '名前のフリガナが全角（カタカナ）でないと登録できない' do
         @user.read_first = 'はなこ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Lead first is invalid')
+        expect(@user.errors.full_messages).to include('Read first is invalid')
       end
       it '生年月日が空欄だと保存できない' do
         @user.birth = ''

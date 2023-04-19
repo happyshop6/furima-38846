@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザー新規登録' do
     context '新規登録がうまくいくとき' do
-      it '全ての入力事項が、存在すれば登録できる' do
+      it '全ての入力事項が、あれば登録できる' do
         expect(@user).to be_valid
       end
       it 'パスワードが6文字以上半角英数字であれば登録できる' do
@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
       it '名前が全角（漢字・ひらがな・カタカナ）であれば登録できる' do
-        @user.first_name = '陸太郎'
+        @user.first_name = '花子'
         expect(@user).to be_valid
       end
       it '名字のフリガナが全角（カタカナ）であれば登録できる' do
@@ -27,7 +27,7 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
       it '名前のフリガナが全角（カタカナ）であれば登録できる' do
-        @user.read_first = 'リクタロウ'
+        @user.read_first = 'ハナコ'
         expect(@user).to be_valid
       end
     end
@@ -48,7 +48,6 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        # binding.pry
         expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it 'パスワードが空欄だと保存できない' do
@@ -80,19 +79,19 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Family name is invalid')
       end
       it '名前が全角（漢字・ひらがな・カタカナ）でないと登録できない' do
-        @user.first_name = 'rikutaro'
+        @user.first_name = 'hanako'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name is invalid')
       end
       it '名字のフリガナが全角（カタカナ）でないと登録できない' do
         @user.read_family = 'やまだ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Lead family kana is invalid')
+        expect(@user.errors.full_messages).to include('Lead family is invalid')
       end
       it '名前のフリガナが全角（カタカナ）でないと登録できない' do
-        @user.read_first = 'りくたろう'
+        @user.read_first = 'はなこ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Lead first kana is invalid')
+        expect(@user.errors.full_messages).to include('Lead first is invalid')
       end
       it '生年月日が空欄だと保存できない' do
         @user.birth = ''

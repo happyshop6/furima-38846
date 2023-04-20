@@ -13,8 +13,8 @@ class User < ApplicationRecord
     validates :nickname, presence: true
     # 自動  validates :email,    uniqueness: true
     # 自動　validates :password,  presence: true, length: { minimum: 6 }
-    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-    validates :family_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
+    validates :family_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
     validates :read_first, format: { with: /\A[ァ-ヶー－]+\z/ }
     validates :read_family, format: { with: /\A[ァ-ヶー－]+\z/ }
     validates :birth, presence: true

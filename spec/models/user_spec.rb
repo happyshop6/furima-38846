@@ -83,7 +83,7 @@ RSpec.describe User, type: :model do
         @user.password = 'ａaa １11'
         @user.password_confirmation = 'ａaa １11'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Please input single-byte alphanumeric characters')
+        expect(@user.errors.full_messages).to include('Password Include both letters and numbers')
       end
       it 'パスワード（確認）が空欄だと保存できない' do
         @user.password = '123abc'
@@ -99,7 +99,7 @@ RSpec.describe User, type: :model do
       it '名字が空だと登録できない' do
         @user.family_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include('Family name is blank')
+        expect(@user.errors.full_messages).to include('Family name can't be blank')
       end
       it '名前が全角（漢字・ひらがな・カタカナ）でないと登録できない' do
         @user.first_name = 'hanako'
@@ -109,17 +109,17 @@ RSpec.describe User, type: :model do
       it '名前が空だと登録できない' do
         @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include('First name is blank')
+        expect(@user.errors.full_messages).to include('First name can't be blank')
       end
       it '名字のフリガナが全角（カタカナ）でないと登録できない' do
         @user.read_family = 'やまだ'
         @user.valid?
         expect(@user.errors.full_messages).to include('Read family is invalid')
       end
-      t '名字のフリガナが空だと登録できない' do
+      it '名字のフリガナが空だと登録できない' do
         @user.read_family = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include('Read family is blank')
+        expect(@user.errors.full_messages).to include('Read family can't be blank')
       end
       it '名前のフリガナが全角（カタカナ）でないと登録できない' do
         @user.read_first = 'はなこ'
@@ -129,7 +129,7 @@ RSpec.describe User, type: :model do
       it '名前のフリガナが空だと登録できない' do
         @user.read_first = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include('Read first is blank')
+        expect(@user.errors.full_messages).to include('Read first can't be blank')
       end
       it '生年月日が空欄だと保存できない' do
         @user.birth = ''

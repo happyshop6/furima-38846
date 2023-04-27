@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  # has_many :products
+  has_many :products
   # has_many :item_purchases
 
   with_options presence: true do
@@ -11,7 +11,7 @@ class User < ApplicationRecord
     validates_format_of :password, with: PASSWORD_REGEX, message: 'Include both letters and numbers'
 
     validates :nickname, presence: true
-    # 自動  validates :email,    uniqueness: true
+    validates :email,    uniqueness: true
     # 自動　validates :password,  presence: true, length: { minimum: 6 }
     validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
     validates :family_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }

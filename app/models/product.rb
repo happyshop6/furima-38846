@@ -1,5 +1,4 @@
 class Product < ApplicationRecord
-
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   # テーブルとのアソシエーション
@@ -18,13 +17,13 @@ class Product < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    #validates :user_id
+    # validates :user_id
     validates :image
     validates :name
     validates :explanation
     validates :category_id
     validates :condition_id
-    validates :postage_type_id 
+    validates :postage_type_id
     validates :prefecture_id
     validates :preparation_day_id
     # 300円以上かつ9,999,999円以下で、半角数字でないと入力不可
@@ -36,8 +35,7 @@ class Product < ApplicationRecord
     validates :category_id
     validates :prefecture_id
     validates :condition_id
-    validates :postage_type_id 
+    validates :postage_type_id
     validates :preparation_day_id
   end
-
 end

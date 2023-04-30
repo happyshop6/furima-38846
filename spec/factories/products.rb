@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :product do
-
     association :user
 
     name { Faker::Name.name }
@@ -17,4 +16,3 @@ FactoryBot.define do
     end
   end
 end
-

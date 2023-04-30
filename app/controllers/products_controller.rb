@@ -2,11 +2,11 @@ class ProductsController < ApplicationController
   before_action :move_to_signed_in, except: [:index, :show]
 
   def index
-   #@product = Product.includes(:user).order('created_at DESC')
+    # @product = Product.includes(:user).order('created_at DESC')
   end
 
   def new
-  @product = Product.new
+    @product = Product.new
   end
 
   def create
@@ -18,20 +18,19 @@ class ProductsController < ApplicationController
     end
   end
 
-
   def show
   end
 
- private
+  private
 
- def product_params
-  params.require(:product).permit(:image, :name, :explanation, :category_id, :condition_id, :postage_type_id, :prefecture_id, :preparation_day_id, :price).merge(user_id: current_user.id)
- end
+  def product_params
+    params.require(:product).permit(:image, :name, :explanation, :category_id, :condition_id, :postage_type_id, :prefecture_id,
+                                    :preparation_day_id, :price).merge(user_id: current_user.id)
+  end
 
- def move_to_signed_in
-  unless user_signed_in?
+  def move_to_signed_in
+    return if user_signed_in?
+
     redirect_to '/users/sign_in'
   end
- end
-
 end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-
   before do
     @product = FactoryBot.build(:product)
   end
@@ -38,7 +37,7 @@ RSpec.describe Product, type: :model do
     end
 
     context '出品ができないとき' do
-       it '１枚画像がないと出品できない' do
+      it '１枚画像がないと出品できない' do
         @product.image = nil
         @product.valid?
         expect(@product.errors.full_messages).to include("Image can't be blank")
@@ -56,77 +55,73 @@ RSpec.describe Product, type: :model do
       it 'カテゴリーの情報が「---」だと出品できない' do
         @product.category_id = 0
         @product.valid?
-        expect(@product.errors.full_messages).to include("Category must be other than 0")
+        expect(@product.errors.full_messages).to include('Category must be other than 0')
       end
       it 'カテゴリーの情報が空欄だと出品できない' do
         @product.category_id = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include("Category can't be blank", "Category is not a number")
+        expect(@product.errors.full_messages).to include("Category can't be blank", 'Category is not a number')
       end
       it '商品の状態の情報が「---」だと出品できない' do
         @product.condition_id = 0
         @product.valid?
-        expect(@product.errors.full_messages).to include("Condition must be other than 0")
+        expect(@product.errors.full_messages).to include('Condition must be other than 0')
       end
       it '商品の状態の情報が空欄だと出品できない' do
         @product.condition_id = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include("Condition can't be blank", "Condition is not a number")
+        expect(@product.errors.full_messages).to include("Condition can't be blank", 'Condition is not a number')
       end
       it '配送料の負担の情報が「---」だと出品できない' do
         @product.postage_type_id = 0
         @product.valid?
-        expect(@product.errors.full_messages).to include("Postage type must be other than 0")
+        expect(@product.errors.full_messages).to include('Postage type must be other than 0')
       end
       it '配送料の負担の情報が空欄だと出品できない' do
         @product.postage_type_id = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include("Postage type can't be blank", "Postage type is not a number")
+        expect(@product.errors.full_messages).to include("Postage type can't be blank", 'Postage type is not a number')
       end
       it '発送元の地域の情報が「---」だと出品できない' do
         @product.prefecture_id = 0
         @product.valid?
-        expect(@product.errors.full_messages).to include("Prefecture must be other than 0")
+        expect(@product.errors.full_messages).to include('Prefecture must be other than 0')
       end
       it '発送元の地域の情報が空欄だと出品できない' do
         @product.prefecture_id = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include("Prefecture can't be blank", "Prefecture is not a number")
+        expect(@product.errors.full_messages).to include("Prefecture can't be blank", 'Prefecture is not a number')
       end
       it '発送までの日数の情報が「---」だと出品できない' do
         @product.preparation_day_id = 0
         @product.valid?
-        expect(@product.errors.full_messages).to include("Preparation day must be other than 0")
+        expect(@product.errors.full_messages).to include('Preparation day must be other than 0')
       end
       it '発送までの日数の情報が空欄だと出品できない' do
         @product.preparation_day_id = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include("Preparation day can't be blank", "Preparation day is not a number")
+        expect(@product.errors.full_messages).to include("Preparation day can't be blank", 'Preparation day is not a number')
       end
       it '価格が空欄だと出品できない' do
         @product.price = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price can't be blank", "Price is not a number")
+        expect(@product.errors.full_messages).to include("Price can't be blank", 'Price is not a number')
       end
       it '価格の範囲が、300円未満だと出品できない' do
         @product.price = 100
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@product.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it '価格の範囲が、9,999,999円を超えると出品できない' do
         @product.price = 10_000_000
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@product.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it 'userが紐付いていないと保存できない' do
         @product.user = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include("User must exist")
+        expect(@product.errors.full_messages).to include('User must exist')
       end
     end
   end
 end
-
-  
-
-

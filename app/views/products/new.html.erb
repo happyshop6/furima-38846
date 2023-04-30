@@ -5,7 +5,7 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with local: true do |f| %>
+   <%= form_with model: @product, local: true do |f| %>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示%>
     <%= render 'shared/error_messages', model: f.object %>
@@ -72,8 +72,7 @@
           <span class="indispensable">必須</span>
         </div>
 
-        <%= f.collection_select(:pastage_type_id, PastageType.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
-
+        <%= f.collection_select(:postage_type_id, PostageType.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>

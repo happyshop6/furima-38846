@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_signed_in, except: [:index, :show]
 
   def index
    #@product = Product.includes(:user).order('created_at DESC')
@@ -28,10 +28,10 @@ class ProductsController < ApplicationController
   params.require(:product).permit(:image, :name, :explanation, :category_id, :condition_id, :postage_type_id, :prefecture_id, :preparation_day_id, :price).merge(user_id: current_user.id)
  end
 
- def move_to_index
-  return if user_signed_in?
-
-  redirect_to action: :index
+ def move_to_signed_in
+  unless user_signed_in?
+    redirect_to '/users/sign_in'
+  end
  end
 
 end

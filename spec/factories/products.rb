@@ -1,10 +1,6 @@
 FactoryBot.define do
   factory :product do
-<<<<<<< Updated upstream
-    
-  end
-end
-=======
+
     association :user
 
     name { Faker::Name.name }
@@ -22,4 +18,3 @@ end
   end
 end
 
->>>>>>> Stashed changes

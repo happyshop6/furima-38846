@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
-  before_action :move_to_signed_in, except: [:index, :show]
+  before_action :move_to_signed_in, except: [:index] #,:show]
 
   def index
-    # @product = Product.includes(:user).order('created_at DESC')
+    @products = Product.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -18,8 +18,8 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show
-  end
+  # def show
+  # end
 
   private
 

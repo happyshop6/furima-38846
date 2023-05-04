@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
    if @product.user_id == current_user.id
    else
      redirect_to root_path
-   
+   end
   end
 
   def update

@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   before_action :move_to_signed_in, except: [:index, :show]
 
+  before_action :set_product, only: [:show, :edit, :update]
+
   def index
     @products = Product.includes(:user).order('created_at DESC')
   end
@@ -19,7 +21,21 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+  end
+
+  def edit
+    if @product.user_id == current_user.id
+    else
+      redirect_to root_path
+    end
+  end
+
+  def update
+    if @product.update(product_params)
+      redirect_to product_path, notice: ''
+    else
+      render 'edit'
+    end
   end
 
   private
@@ -33,5 +49,9 @@ class ProductsController < ApplicationController
     return if user_signed_in?
 
     redirect_to '/users/sign_in'
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end

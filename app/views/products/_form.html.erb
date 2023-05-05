@@ -1,0 +1,9 @@
+<%= form_with model: @product, local: true do |f| %>
+<div class="field">
+  <%= f.text_field :name, placeholder: 'name' %><br />
+  <div class="field">
+
+<div class="actions">
+    <%= f.submit "保存する", class: :form__btn  %>
+  </div>
+<% end %>

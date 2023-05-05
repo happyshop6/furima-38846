@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :move_to_signed_in, except: [:index, :show]
+  before_action :move_to_signed_in, except: [:index, :show, :edit, :destroy]
 
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
@@ -24,19 +24,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    if @product.user_id == current_user.id
-    else
-      redirect_to root_path
-    end
   end
 
   def destroy
-    if@product.valid?
-      @product.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
+    @product.destroy
+    redirect_to root_path
   end
 
   def update

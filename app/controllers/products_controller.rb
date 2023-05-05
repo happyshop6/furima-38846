@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :move_to_signed_in, except: [:index, :show]
 
-  before_action :set_product, only: [:show, :edit, :update、:destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = Product.includes(:user).order('created_at DESC')
@@ -31,14 +31,13 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    if product.user_id == current_user.id
-       product.destroy
-       redirect_to root_path
+    if @product.user_id == current_user.id
+      @product.destroy
+      redirect_to root_path
     else
-       redirect_to root_path
+      redirect_to root_path
     end
   end
-
 
   def update
     if @product.update(product_params)

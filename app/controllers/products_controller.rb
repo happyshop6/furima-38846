@@ -62,5 +62,6 @@ class ProductsController < ApplicationController
   def move_product
     if @product.user_id != current_user.id
       redirect_to root_path
+    end
   end
 end

@@ -5,7 +5,6 @@ class Product < ApplicationRecord
   belongs_to :user
   has_one    :item_purchase
 
-
   # アクティブハッシュとのアソシエーション
   belongs_to :category
   belongs_to :prefecture

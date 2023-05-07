@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :item_purchase_form do
-    name { Faker::Name.name }
-    explanation { Faker::Lorem.sentence }
-    category_id { Faker::Number.between(from: 1, to: 10) }
-    condition_id { Faker::Number.between(from: 1, to: 6) }
-    postage_type_id { Faker::Number.between(from: 1, to: 2) }
+    user_id { Faker::Number.non_zero_digit }
+    product_id { Faker::Number.non_zero_digit }
+    postal_code { Faker::Number.decimal_part(digits: 3) + '-' + Faker::Number.decimal_part(digits: 4) }
     prefecture_id { Faker::Number.between(from: 1, to: 47) }
-    preparation_day_id { Faker::Number.between(from: 1, to: 3) }
-    price { Faker::Number.between(from: 300, to: 9_999_999) }
-  end
+    city { Faker::Address.city }
+    address { Faker::Address.street_address }
+    building_name { Faker::Address.street_address }
+    phone_number { Faker::Number.decimal_part(digits: 11) }
+    token { Faker::Internet.password(min_length: 20, max_length: 30) }
 end

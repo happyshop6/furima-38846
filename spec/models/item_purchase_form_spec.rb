@@ -96,7 +96,7 @@ RSpec.describe ItemPurchaseForm, type: :model do
         expect(@item_purchase_form.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号が12桁以上あると保存できないこと' do
-        @item_purchase_form.phone_number = 12_345_678_910_123_111
+        @item_purchase_form.phone_number = 12_345_678_910_123_333
         @item_purchase_form.valid?
         expect(@item_purchase_form.errors.full_messages).to include('Phone number is invalid')
       end

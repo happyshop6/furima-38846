@@ -31,7 +31,7 @@
     </div>
 
 
-    <%= form_with(model: @item_purchase_form, url: product_item_purchase_path(@product), id: 'charge-form', class: 'transaction-form-wrap',local: true)do |f| %>
+    <%= form_with(model: @item_purchase_form, url: product_item_purchases_path(@product), id: 'charge-form', class: 'transaction-form-wrap',local: true)do |f| %>
     <%= render 'shared/error_messages', model: f.object %>
     
 

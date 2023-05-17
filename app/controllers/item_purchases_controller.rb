@@ -30,8 +30,10 @@ class ItemPurchasesController < ApplicationController
       card: item_purchase_params[:token], # カードトークン
       currency: 'jpy'             # 通貨の種類（日本円）
     )
+  end
 
-    def non_purchased_product
+  def non_purchased_product
       @product = Product.find(params[:product_id])
-      redirect_to root_path if current_user.id == @product.user_id
+      redirect_to root_path if current_user.id == @product.user_id || @product.item_purchase.present?
+  end
 end

@@ -10,7 +10,7 @@
     
     <% if @product.item_purchase != nil %> 
        <div class="sold-out">
-        <%<span>Sold Out!!</span> %>
+        <span>Sold Out!!</span>
       </div>
       <% end %> 
 
@@ -33,7 +33,7 @@
       <%= link_to '削除', product_path(@product), method: :delete, class:'item-destroy' %>
     <% else %>
 
-     <%= link_to '購入画面に進む',  product_item_purchase_path(@product),class:"item-red-btn"%>
+     <%= link_to '購入画面に進む',  product_item_purchases_path(@product),class:"item-red-btn"%>
     <% end %>
   <% end %>
 

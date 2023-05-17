@@ -1,4 +1,4 @@
-class PurchaseInfoForm
+class ItemPurchaseForm
   include ActiveModel::Model
   attr_accessor :user, :product, :postal_code, :city, :address, :prefecture_id, :building_name, :phone_number,:token
 
@@ -16,6 +16,6 @@ class PurchaseInfoForm
 
   def save
     item_purchase = ItemPurchase.create(user: user, product: product)
-    PurchaseInfo.create(item_purchase: item_purchase, postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_number: phone_number)
+    ItemPurchase.create(item_purchase: item_purchase, postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_number: phone_number)
   end
 end

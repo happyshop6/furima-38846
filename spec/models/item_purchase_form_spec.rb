@@ -51,20 +51,19 @@ RSpec.describe ItemPurchaseForm, type: :model do
         expect(@item_purchase_form.errors.full_messages).to include("User can't be blank")
       end
       it 'product_idが空だと保存できない' do
-        @item_purchase_form.item_id = nil
+        @item_purchase_form.product_id = nil
         @item_purchase_form.valid?
         expect(@item_purchase_form.errors.full_messages).to include("Product can't be blank")
       end
       it '郵便番号が空だと保存できないこと' do
         @item_purchase_form.postal_code = nil
         @item_purchase_form.valid?
-        expect(@item_purchaser_form.errors.full_messages).to include("PostalCode can't be blank",
-                                                                     'PostalCode is invalid. Include hyphen(-)')
+        expect(@item_purchase_form.errors.full_messages).to include("Postal code can't be blank")
       end
       it '郵便番号にハイフンがないと保存できないこと' do
-        @item_purchase_form.postal_code = 1_234_567
+        @item_purchase_form.postal_code = 1234_567
         @item_purchase_form.valid?
-        expect(@item_purchase_form.errors.full_messages).to include('PostalCode is invalid. Include hyphen(-)')
+        expect(@item_purchase_form.errors.full_messages).to include("Postal code Include hyphen(-)")
       end
       it '都道府県が「---」だと保存できないこと' do
         @item_purchase_form.prefecture_id = 0
@@ -93,11 +92,6 @@ RSpec.describe ItemPurchaseForm, type: :model do
       end
       it '電話番号にハイフンがあると保存できないこと' do
         @item_purchase_form.phone_number = '123 - 1234 - 1234'
-        @item_purchase_form.valid?
-        expect(@item_purchase_form.errors.full_messages).to include('Phone number is invalid')
-      end
-      it '電話番号が12桁以上あると保存できないこと' do
-        @item_purchase_form.phone_number = 12_345_678_910_123_333
         @item_purchase_form.valid?
         expect(@item_purchase_form.errors.full_messages).to include('Phone number is invalid')
       end

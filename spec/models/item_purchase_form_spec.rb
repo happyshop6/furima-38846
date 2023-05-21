@@ -61,9 +61,9 @@ RSpec.describe ItemPurchaseForm, type: :model do
         expect(@item_purchase_form.errors.full_messages).to include("Postal code can't be blank")
       end
       it '郵便番号にハイフンがないと保存できないこと' do
-        @item_purchase_form.postal_code = 1234_567
+        @item_purchase_form.postal_code = 1_234_567
         @item_purchase_form.valid?
-        expect(@item_purchase_form.errors.full_messages).to include("Postal code Include hyphen(-)")
+        expect(@item_purchase_form.errors.full_messages).to include('Postal code Include hyphen(-)')
       end
       it '都道府県が「---」だと保存できないこと' do
         @item_purchase_form.prefecture_id = 0

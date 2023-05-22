@@ -11,8 +11,6 @@
 | read_family        | string | null: false              |
 | birth               | date   | null: false             |
 
-
-
 ### Association
 
 - has_many :products

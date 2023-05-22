@@ -1,8 +1,10 @@
 require 'rails_helper'
-
 RSpec.describe ItemPurchaseForm, type: :model do
+
   before do
-    @item_purchase_form = FactoryBot.build(:item_purchase_form)
+   @user = FactoryBot.create(:user)
+   @product = FactoryBot.create(:product)
+   @item_purchase_form = FactoryBot.build(:item_purchase_form, user_id:@user.id,product_id:@product.id)
   end
 
   describe '配送先情報の保存' do
@@ -89,6 +91,16 @@ RSpec.describe ItemPurchaseForm, type: :model do
         @item_purchase_form.phone_number = nil
         @item_purchase_form.valid?
         expect(@item_purchase_form.errors.full_messages).to include("Phone number can't be blank")
+      end
+      it '電話番号が9桁以下だと保存できないこと' do
+        @item_purchase_form.phone_number = "12345678"
+        @item_purchase_form.valid?
+        expect(@item_purchase_form.errors.full_messages).to include("Phone number is invalid")
+      end
+      it '電話番号が12桁以上だと保存できないこと' do
+        @item_purchase_form.phone_number = "1234567891011111"
+        @item_purchase_form.valid?
+        expect(@item_purchase_form.errors.full_messages).to include("Phone number is invalid")
       end
       it '電話番号にハイフンがあると保存できないこと' do
         @item_purchase_form.phone_number = '123 - 1234 - 1234'

@@ -26,6 +26,10 @@ class ProductsController < ApplicationController
   end
 
   def edit
+      if @product.user_id == current_user.id
+      else
+        redirect_to root_path
+    end
   end
 
   def destroy

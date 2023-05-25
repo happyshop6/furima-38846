@@ -4,9 +4,6 @@ class ItemPurchasesController < ApplicationController
 
   def index
     @item_purchase_form = ItemPurchaseForm.new
-    if current_user == @item_purchase_form.user
-       redirect_to root_path
-    end
   end
 
   def create

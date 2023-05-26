@@ -16,7 +16,6 @@ class ItemPurchasesController < ApplicationController
       render :index
     end
   end
-
   private
 
   def item_purchase_params
